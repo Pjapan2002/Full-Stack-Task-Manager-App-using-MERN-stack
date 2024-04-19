@@ -1,9 +1,13 @@
 import React from 'react'
+import LoginForm from '../components/Signup/Login';
 
 function Login() {
   return (
     <div>
-      <h1>Login Page</h1>
+      <LoginForm/>
+      <Link to="/signup">
+        Create Your New Account
+      </Link>
     </div>
   )
 }

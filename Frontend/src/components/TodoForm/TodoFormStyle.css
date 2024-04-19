@@ -1,0 +1,14 @@
+.todoForm{
+    width: 40%;
+}
+
+.todoForm form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.todoForm input, textarea{
+    padding: 5px 10px;
+    font-size: 1.1em;
+}

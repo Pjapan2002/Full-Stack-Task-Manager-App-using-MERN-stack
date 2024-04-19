@@ -1,9 +1,13 @@
 import React from 'react'
+import User from '../components/User/User';
+import TodoAddForm from '../components/TodoForm/TodoAddForm';
+import './HomeStyle.css';
 
 function Home() {
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className='home'>
+      <User/>
+      <TodoAddForm/>
     </div>
   )
 }
