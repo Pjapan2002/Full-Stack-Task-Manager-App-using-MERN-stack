@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './TodoComStyle.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTodo, editTodo } from '../../TodoFeatures/todoSlice.js';
+import { deleteTodo, editTodo} from '../../TodoFeatures/todoSlice.js';
 
 function TodoCom() {
 
     const todos = useSelector(state => state.todos);
-
+    
     // console.log(todos);
     const dispatch = useDispatch();
 

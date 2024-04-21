@@ -1,16 +1,17 @@
 import TodoContent from '../models/todoContent.model.js';
-// import Todo from '../models/todo.model.js';
+import Todo from '../models/todoContent.model.js';
 // import User from '../models/user.model.js';
 
 export async function handleGet(req, res) 
 {
-    const todo = await Todo.find({});
-    
-    res.json(todo);
+    const todos = await Todo.find({});
+    // console.log(todos);
+    res.json(todos)
 }
 
 export async function handlePost(req, res) 
-{
+{   
+    // console.log(req);
     const {title, description} = req.body;
         
     await TodoContent.create(
@@ -20,5 +21,6 @@ export async function handlePost(req, res)
         }
     )
     
-    res.send('Todo task added successfully!!!');
+    // res.send('Todo task added successfully!!!');
+    res.redirect('http://localhost:5173/');
 }
