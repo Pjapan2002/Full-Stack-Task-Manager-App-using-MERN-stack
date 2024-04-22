@@ -2,12 +2,10 @@ import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    todos: [{ id: 1, title: "geatting", description: "Hello world" }]
+    todos: [{ _id: 1, title: "geatting", description: "Hello world" }]
 }
 
-// const todos = () => {
-//     axios.get('/api')
-// }
+
 export const fetchTodoData = createAsyncThunk(
     'Todos/fetchTodoData',
     async () => {
@@ -26,7 +24,6 @@ export const todoSlice = createSlice({
     reducers: {
         addTodo: (state, action) => {
             const todo = {
-                id: nanoid(),
                 title: action.payload.title,
                 description: action.payload.description
             }

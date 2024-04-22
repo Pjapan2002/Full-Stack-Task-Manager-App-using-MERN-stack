@@ -5,9 +5,6 @@ function Login() {
   return (
     <div>
       <LoginForm/>
-      <Link to="/signup">
-        Create Your New Account
-      </Link>
     </div>
   )
 }

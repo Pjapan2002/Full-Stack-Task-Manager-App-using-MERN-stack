@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './TodoComStyle.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTodo, editTodo} from '../../TodoFeatures/todoSlice.js';
+import { deleteTodo, editTodo, fetchTodoData} from '../../TodoFeatures/todoSlice.js';
 
 function TodoCom() {
 
@@ -9,6 +9,10 @@ function TodoCom() {
     
     // console.log(todos);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        return dispatch(fetchTodoData());
+    }, [deleteTodo])
 
     return (
         <div className='todoList'>
@@ -21,7 +25,7 @@ function TodoCom() {
                     const [editBtn, setEditBtn] = useState(true);
 
                     return (
-                        <li key={todo.id}>
+                        <li key={todo._id}>
                             <input 
                             id='todoHeading'
                             type="text"
@@ -40,7 +44,7 @@ function TodoCom() {
                             <hr />
                             <div className='btn'>
                                 <button onClick={() => setEditBtn(!editBtn)}>edit</button>
-                                <button onClick={() => dispatch(deleteTodo(todo.id))}>delete</button>
+                                <button onClick={() => dispatch(deleteTodo(todo._id))}>delete</button>
                             </div>
                         </li>
                     )

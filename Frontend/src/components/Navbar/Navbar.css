@@ -2,13 +2,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 2px solid #212121;
+    margin: 10px auto;
+    padding: 10px 15px;
 }
 
 .logo{
     display: flex;
 }
 
-div ul{
+.navbar ul{
     font-size: 1em;
     width: 300px;
     display: flex;
@@ -16,7 +19,7 @@ div ul{
     align-items: center;
 }
 
-div button{
+.navbar button{
     padding: 5px 10px;
     font-size: 1em;
 }

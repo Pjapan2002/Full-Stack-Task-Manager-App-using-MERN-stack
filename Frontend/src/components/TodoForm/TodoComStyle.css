@@ -1,12 +1,20 @@
 .todoList{
     padding: 10px;
+    width: 95vw;
+    margin: auto auto;
+}
+.todoList ul{
+    width: 100%;
+    /* margin: auto auto; */
+    display: flex;
+    flex-wrap: wrap;
 }
 .todoList ul li {
     padding: 10px;
     width: 250px;
     height: 250px;
     border: 2px solid #212121;
-    margin: 0 10px;
+    margin: 10px;
 }
 
 .todoList input,textarea{
@@ -36,4 +44,9 @@
     margin: 8px 0;
     display: flex;
     justify-content: space-between;
+}
+.btn button{
+    font-size: 0.98em;
+    width: 60px;
+    height: 30px;
 }
