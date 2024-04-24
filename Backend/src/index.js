@@ -1,7 +1,7 @@
 import express from 'express';
 import dbConnection from './db/dbConnection.js';
 import bodyParser from 'body-parser';
-
+import cookieParser from 'cookie-parser';
 // Database Connections
 dbConnection("mongodb://localhost:27017")
 .then(() => console.log("Database connection successfull!!!"))
@@ -12,6 +12,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
+app.use(cookieParser());
 
 
 // Routes
