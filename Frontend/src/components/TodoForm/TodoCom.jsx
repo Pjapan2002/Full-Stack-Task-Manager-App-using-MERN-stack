@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './TodoComStyle.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTodo, editTodo, fetchTodoData} from '../../TodoFeatures/todoSlice.js';
+import { deleteTodo, editTodo, fetchTodoData, deleteTodoData } from '../../TodoFeatures/todoSlice.js';
 
 function TodoCom() {
 
@@ -10,19 +10,29 @@ function TodoCom() {
     // console.log(todos);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        return dispatch(fetchTodoData());
-    }, [deleteTodo])
+    const removeTodo = useCallback((id) => {
+        // console.log(id);
+        dispatch(deleteTodoData(id));
+        dispatch(deleteTodo(id));
+        // dispatch(fetchTodoData());
+    }, [dispatch])
+    
+    useEffect( () => {
+        dispatch(fetchTodoData());
+      }, [dispatch] )
+
 
     return (
         <div className='todoList'>
             <ul>
             {
-                todos.map( (todo) => {
+                todos?.map( (todo) => {
 
                     const [title, setTitle] = useState(todo.title);
                     const [description, setDescription] = useState(todo.description);
                     const [editBtn, setEditBtn] = useState(true);
+                    
+                    // console.log(todo._id);
 
                     return (
                         <li key={todo._id}>
@@ -43,9 +53,13 @@ function TodoCom() {
                             />
                             <hr />
                             <div className='btn'>
-                                <button onClick={() => setEditBtn(!editBtn)}>edit</button>
-                                <button onClick={() => dispatch(deleteTodo(todo._id))}>delete</button>
+                                <button onClick={() => {
+                                    setEditBtn(!editBtn);
+                                    }}>edit</button>
+                                <button onClick={() => removeTodo(todo._id)}>delete</button>
+                                
                             </div>
+                            
                         </li>
                     )
                 })

@@ -10,11 +10,23 @@ export const fetchTodoData = createAsyncThunk(
     'Todos/fetchTodoData',
     async () => {
         
-        const data = axios.get('/api')
+        const data = axios.get('/api/todo')
                      .then((res) => res.data)
                      .catch(() => null)
 
         return data;
+    }
+  );
+
+export const deleteTodoData = createAsyncThunk(
+    'Todos/deleteTodoData',
+    async (id) => {
+        // console.log("hi");
+        await axios({
+            method: 'delete',
+            url: `/api/todo/${id}`,
+          });
+        return fetchTodoData();
     }
   );
 
@@ -23,17 +35,23 @@ export const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action) => {
+            // console.log("hello");
             const todo = {
+                // _id: action.payload._id,
                 title: action.payload.title,
                 description: action.payload.description
             }
-            state.todos.push(todo)
+            return state.todos.push(todo)
         },
         deleteTodo: (state, action) => {
-            state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+
+          // deleteTodoData(action.payload._id);
+          state.todos = state.todos.filter((todo) => todo._id !== action.payload._id);
+            
+            // return state.todos.filter((todo) => todo.id !== action.payload.id);
         },
         editTodo: (state, action) => {
-            let todo = state.todos.find((todo) => todo.id === action.payload.id);
+            let todo = state.todos.find((todo) => todo._id === action.payload._id);
             todo = {
                 title: action.payload.title,
                 description: action.payload.action

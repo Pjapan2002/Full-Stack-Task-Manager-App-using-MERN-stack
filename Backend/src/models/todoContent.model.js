@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const todoContentSchema = new mongoose.Schema({
+    taskstatus: {
+        type: Boolean,
+        required: true,
+    },
     title: {
         type: String,
         required: true,

@@ -10,34 +10,32 @@ function TodoAddForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const addTodoHandler = (e) => {
+  const addTodoHandler = async (e) => {
     e.preventDefault();
     const input = {
       title: title,
       description: description
     }
 
-    axios({
-      method: 'post',
-      url: '/api',
-      data: input
-    });
-
-    dispatch(addTodo(input));
     setTitle("");
     setDescription("");
+
+    await axios({
+      method: 'post',
+      url: '/api/',
+      data: input
+    });
+  
+    dispatch(addTodo(input));
   }
   
   useEffect( () => {
-    // console.log("hello");
     dispatch(fetchTodoData());
-    // const data = fetchTodoData();
-    // console.log(data);
   }, [dispatch] )
 
   return (
     <div className='todoForm'>
-      <form action='/api' method='Post' onSubmit={addTodoHandler}>
+      <form onSubmit={addTodoHandler}>
         <input
           type='text'
           name='title'

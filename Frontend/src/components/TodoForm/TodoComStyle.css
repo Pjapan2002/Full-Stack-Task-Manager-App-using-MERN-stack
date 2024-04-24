@@ -5,7 +5,6 @@
 }
 .todoList ul{
     width: 100%;
-    /* margin: auto auto; */
     display: flex;
     flex-wrap: wrap;
 }
@@ -14,7 +13,7 @@
     width: 250px;
     height: 250px;
     border: 2px solid #212121;
-    margin: 10px;
+    margin: 10px auto;
 }
 
 .todoList input,textarea{
