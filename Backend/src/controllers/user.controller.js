@@ -101,3 +101,33 @@ export async function handleUserLoginPost(req, res) {
         }
     )
 }
+
+export async function handleUserLogoutPost(req, res) {
+
+    await User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $unset: { refreshToken: 1 }
+        },
+        {
+            new: true
+        }
+    )
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    
+    res.status(200)
+    .clearCookie( "accessToken", accessToken, options )
+    .clearCookie( "refreshToken", refreshToken, options )
+    .json(
+        {
+            "Status Code": 200,
+            "data": {},
+            "Message": " User Successfully Logout!"
+        }
+    )
+}

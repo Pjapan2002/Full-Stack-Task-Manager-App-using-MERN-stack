@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const todoContentSchema = new mongoose.Schema({
     taskstatus: {
         type: Boolean,
+        default: true,
         required: true,
     },
     title: {

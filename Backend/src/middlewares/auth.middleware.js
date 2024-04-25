@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 const access_Token_Secret = "JapanPatelSDEDev#07@2002";
 
-export async function loginUser(req, res, next) 
+export async function loginUserOnly(req, res, next) 
 {
     const token = req.cookies?.accessToken;
 
