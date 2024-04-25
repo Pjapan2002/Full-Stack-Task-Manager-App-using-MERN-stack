@@ -7,6 +7,8 @@ const generateAccessAndRefereshTokens = async function (userId) {
         const accessToken = await user.generateAccessToken();
         const refreshToken = await user.generateRefreshToken();
 
+        // console.log(user.generateAccessToken);
+
         user.refreshToken = refreshToken;
         await user.save({ validateBeforeSave: false });
 
@@ -74,13 +76,16 @@ export async function handleUserLoginPost(req, res) {
         throw new Error(404, "user does not exist.")
     }
 
-    const isPasswordCorrect = user.isPasswordCorrect(password);
+    const isPasswordCorrect = await user.isPasswordCorrect(password);
+
+    // console.log(isPasswordCorrect);
 
     if (!isPasswordCorrect) {
         throw new Error(401, "Invalid Password!");
     }
-
+    
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id);
+    // console.log(accessToken, "\n", refreshToken);
 
     const loggedInUser = await User.findById(user._id).select( "-password -refreshToken" );
 
