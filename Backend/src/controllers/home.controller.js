@@ -8,8 +8,10 @@ export async function handleHomeGet(req, res) {
 }
 
 export async function handleHomePost(req, res) {
+
     // console.log(req);
     const { title, description } = req.body;
+    // console.log(title, "\n", description);
 
     if (!(title || description)) {
         throw new Error(400, "Title or description are required.")
@@ -22,20 +24,25 @@ export async function handleHomePost(req, res) {
         }
     )
 
-    const userTodosList = await Todos.findOne((todos) => todos.createdBy === req.user._id);
+    const todosList = await Todos.find({ createdBy : req.user._id });
+    
+    // console.log(!todosList);
 
-    if(!userTodosList)
+    if(todosList.length === 0)
     {
         await Todos.create({
-            userTodos: [{newTodo},],
             createdBy: req.user._id
         })
     }
-    else{
-        userTodosList.userTodos.push( { newTodo } );
-        await userTodosList.save({ validateBeforeSave: false });
-    }
-
+    
+    const userTodosList = await Todos.findOneAndUpdate( { createdBy : req.user._id },
+    {
+        $push: { userTodos : newTodo}
+    },
+    {
+        new: true      
+    })
+    
     res.status(201)
         .json(
             {
@@ -56,11 +63,13 @@ export async function handleHomeDelete(req, res) {
 
     await TodoContent.findByIdAndDelete(id);
 
-    const userTodosList = await Todos.findOne((todos) => todos.createdBy === req.user._id);
-    userTodosList.userTodos = userTodosList.userTodos.filter((todo) => todo._id !== id);
-    await userTodosList.save();
-
-    const updateUserTodos = await Todos.findOne((todos) => todos.createdBy === req.user._id);
+    const updateUserTodos = await Todos.findOneAndUpdate({ createdBy : req.user._id },
+    {
+        $pull: { userTodos : id }
+    },
+    {
+        new: true,
+    });
 
     res.status(204)
         .json(
@@ -85,19 +94,29 @@ export async function handleHomeEdit(req, res) {
         taskstatus,
         title,
         description
-    })
+    }, { new : true })
 
-    const userTodosList = Todos.findOne( (todos) => todos.createdBy === req.user._id );
+    const updateUserTodos = await Todos.findOneAndUpdate( { createdBy : req.user._id }, 
+    {
+        $setOnInsert: { "userTodos.$[elem]._id" : todo._id, ...todo }
+    } ,
+    {
+        arrayFilters: [ { "elem._id": todo._id } ]
+    },
+    {
+        new: true
+    });
+    
+    // console.log(typeof updateUserTodos);
+    // userTodosList.userTodos.map( 
+    //     function (todo) {
+    //     if( todo._id === id){
+    //         todo = this.todo;
+    //     }
+    // })
+    // userTodosList.sava();
 
-    userTodosList.userTodos.map( 
-        function (todo) {
-        if( todo._id === id){
-            todo = this.todo;
-        }
-    })
-    userTodosList.sava();
-
-    const updateUserTodos = Todos.findById(this.userTodosList._id);
+    // const updateUserTodos = Todos.findById(this.userTodosList._id);
     
     res.status(205)
         .json(

@@ -19,7 +19,7 @@ app.use(cookieParser());
 import HomeRoute from './routes/home.route.js';
 import userRoute from './routes/user.route.js';
 
-app.use( '/api/v1', HomeRoute );
+app.use( '/api/v1/task', HomeRoute );
 app.use( '/api/v1/user', userRoute );
 
 

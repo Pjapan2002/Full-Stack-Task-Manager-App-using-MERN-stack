@@ -18,7 +18,7 @@ export async function loginUserOnly(req, res, next)
     if (!user) {
         throw new Error(401, "Invalid Access Token")
     }
-    
+    // console.log("hello");
     req.user = user;
     next()
 }
