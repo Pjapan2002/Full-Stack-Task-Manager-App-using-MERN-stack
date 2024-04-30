@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './TodoFormStyle.css';
 import { useDispatch } from 'react-redux';
-import { addTodo, fetchTodoData } from '../../TodoFeatures/todoSlice.js';
-import axios from 'axios';
+import { addTodo } from '../../TodoFeatures/todoSlice.js';
 
 function TodoAddForm() {
 
@@ -10,32 +9,24 @@ function TodoAddForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const addTodoHandler = async (e) => {
+  const addTodoHandler = (e) => {
     e.preventDefault();
-    const input = {
+
+    const inputData = {
+      taskStatus: true,
       title: title,
       description: description
     }
-
+    
+    dispatch(addTodo(inputData));
     setTitle("");
     setDescription("");
 
-    await axios({
-      method: 'post',
-      url: '/api/',
-      data: input
-    });
-  
-    dispatch(addTodo(input));
   }
   
-  useEffect( () => {
-    dispatch(fetchTodoData());
-  }, [dispatch] )
-
   return (
     <div className='todoForm'>
-      <form onSubmit={addTodoHandler}>
+      <form >
         <input
           type='text'
           name='title'
@@ -54,8 +45,9 @@ function TodoAddForm() {
         />
         <input
           type='submit'
-          value='Submit'
+          value='Add New Task'
           id='submitBtn'
+          onClick={addTodoHandler}
         />
       </form>
     </div>

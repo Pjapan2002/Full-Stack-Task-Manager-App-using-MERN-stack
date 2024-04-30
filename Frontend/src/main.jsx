@@ -4,11 +4,11 @@ import App from './App.jsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
-import Home from './pages/Home.jsx';
-import ViewTask from './pages/ViewTask.jsx';
-import Contactus from './pages/Contactus.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
+import Home from './pages/home/Home.jsx';
+import ViewTask from './pages/home/ViewTask.jsx';
+import Contactus from './pages/contactus/Contactus.jsx';
+import Login from './pages/Signup/Login.jsx';
+import Signup from './pages/Signup/Signup.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
