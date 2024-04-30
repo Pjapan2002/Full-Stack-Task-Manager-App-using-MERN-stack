@@ -1,14 +1,15 @@
 import React from 'react'
 import './UserStyle.css';
-
+import male from '../../assets/male-avatar.png';
+import female from '../../assets/female-avatar.png';
 function User() {
 
     const name = "Name";
     
   return (
     <div className='user'>
-      <img src="./Avatar" alt="Avatar" />
-      <div>{name}</div>
+      <img src={male} alt="userAvatar" />
+      <div className='userName'>{name}</div>
     </div>
   )
 }

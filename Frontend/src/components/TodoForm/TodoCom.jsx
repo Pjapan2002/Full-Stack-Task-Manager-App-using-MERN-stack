@@ -44,6 +44,17 @@ function TodoCom() {
                         
                         return (
                             <li key={todo._id} >
+                                <div className='todo_Status'>
+                                <input
+                                    id='todoStatus'
+                                    type='checkbox'
+                                    />
+                                <label
+                                    id='todoText'
+                                    htmlFor='todoStatus'
+                                >   pending</label>
+                                </div>
+                                {/* <hr /> */}
                                 <input
                                     id='todoHeading'
                                     type="text"
@@ -54,7 +65,7 @@ function TodoCom() {
                                         setTitle(e.target.value);
                                     } }
                                 />
-                                <hr />
+                                {/* <hr /> */}
                                 <textarea
                                     id='todoDes'
                                     type="text"
@@ -65,7 +76,7 @@ function TodoCom() {
                                         setDescription(e.target.value);
                                     } }
                                 />
-                                <hr />
+                                {/* <hr /> */}
                                 <div className='btn'>
                                     <button onClick={ () => updateTodo(todo._id) }>edit</button>
                                     <button onClick={ () => removeTodo(todo._id) }>delete</button>

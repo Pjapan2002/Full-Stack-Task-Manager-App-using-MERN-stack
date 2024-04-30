@@ -1,14 +1,29 @@
 .todoForm{
-    width: 40%;
+    width: 50%;
+    /* background-color: #b2b2b22d; */
 }
 
 .todoForm form{
-    width: 100%;
+    width: 70%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    background-color: #b7bfbe30;
+    border-radius: 15px;
 }
 
 .todoForm input, textarea{
+    /* width: 100%; */
+    border: none;
     padding: 5px 10px;
     font-size: 1.1em;
+    background-color: #b2b2b26d;
+}
+
+.todoForm input[type="submit"]{
+    background-color: rgba(0, 128, 0, 0.719);
+    font-weight: 550;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

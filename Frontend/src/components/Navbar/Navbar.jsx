@@ -23,7 +23,7 @@ function Navbar() {
         </ul>
       </div>
       <div>
-        <button>Logout</button>
+        <button className='logoutbtn'>Logout</button>
       </div>
     </div>
   )

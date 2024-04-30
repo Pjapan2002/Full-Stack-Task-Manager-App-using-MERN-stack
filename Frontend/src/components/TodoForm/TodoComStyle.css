@@ -12,25 +12,43 @@
     padding: 10px;
     width: 250px;
     height: 250px;
-    border: 2px solid #212121;
+    border: 1.8px solid #212121;
     margin: 10px auto;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    /* gap: 10px; */
 }
 
 .todoList input,textarea{
     width: 100%;
     border: none;
     font-size: 0.90em;
+    /* border-radius: 6px; */
 }
 
+.todoList .todo_Status{
+    width: 100%;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px -10%;
+}
 .todoList #todoHeading{
+    height: 10%;
     font-size: 1em;
     text-align: center;
     font-weight: 600;
     text-transform: uppercase;
+    margin: 5px 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 .todoList #todoDes{
-    height: 73%;
+    height: 55%;
     padding: 5px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 .todoList input:focus{
     outline: none;
@@ -40,12 +58,23 @@
 }
 
 .todoList .btn{
+    height: 10%;
     margin: 8px 0;
     display: flex;
     justify-content: space-between;
 }
 .btn button{
+    border: none;
     font-size: 0.98em;
     width: 60px;
     height: 30px;
+    border-radius: 6px;
+    background-color: rgba(0, 128, 0, 0.797);
+    color: #212121;
+}
+
+.btn button:hover{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
 }

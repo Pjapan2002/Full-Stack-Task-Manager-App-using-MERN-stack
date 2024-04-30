@@ -5,10 +5,15 @@
     border: 2px solid #212121;
     margin: 10px auto;
     padding: 10px 15px;
+    background-color: #b2b2b22d;
+    border-radius: 8px;
 }
 
 .logo{
     display: flex;
+}
+.logo:hover{
+    color: #008500;
 }
 
 .navbar ul{
@@ -19,7 +24,26 @@
     align-items: center;
 }
 
-.navbar button{
-    padding: 5px 10px;
-    font-size: 1em;
+.navbar ul li:hover{
+    padding: 5px;
+    border: 2px solid #212121;
+    border-radius: 8px;
+    background-color: #212121;
+    color: #fff;
+    
 }
+
+.navbar .logoutbtn{
+    border: none;
+    padding: 8px 10px;
+    font-size: 1em;
+    border-radius: 8px;
+    background-color: rgba(0, 128, 0, 0.797);
+}
+
+.navbar .logoutbtn:hover{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+}
+

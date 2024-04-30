@@ -7,8 +7,9 @@ function Signup() {
       <h1>Signup</h1>
       <form >
         <input type="text" name='name' id='name' placeholder='username' />
-        <input type="Date" name='dateOfBirth' id='dateOfBirth' />
-        <div>
+        {/* <input type="Date" name='dateOfBirth' id='dateOfBirth' /> */}
+        <div className='dobgen'>
+          <input type="Date" name='dateOfBirth' id='dateOfBirth' />
           <label htmlFor="male">Male</label>
           <input type="radio" name='gender' id='male'/>
           <label htmlFor="female">Female</label>

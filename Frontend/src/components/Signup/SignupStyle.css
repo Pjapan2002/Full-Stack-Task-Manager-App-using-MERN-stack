@@ -10,14 +10,30 @@
     margin: 20px auto;
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    /* background: #000; */
 }
 
 .signup form input,textarea{
+    border: none;
     padding: 5px 10px;
     font-size: 1.1em;
+    background-color: aliceblue;
 }
 
-.signup form div{
+.signup form input[type="Date"]{
+    margin-right: 120px;
+}
+
+.signup form input[type="submit"]{
+    background-color: rgba(0, 128, 0, 0.797);
+}
+.signup form input[type="submit"]:hover{
+    color: #fff;
+}
+
+.signup form .dobgen{
+    background-color: aliceblue;
     width: 100%;
     padding: 5px 10px;
     font-size: 1.1em;

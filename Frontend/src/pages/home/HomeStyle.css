@@ -1,8 +1,9 @@
 .home{
     padding: 10px 100px;
     height: 70vh;
-    width: 90vw;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 100px;
 }
