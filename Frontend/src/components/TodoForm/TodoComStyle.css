@@ -16,23 +16,23 @@
     margin: 10px auto;
     background-color: #f1f1f1;
     border-radius: 10px;
-    /* gap: 10px; */
+   
 }
 
 .todoList input,textarea{
     width: 100%;
     border: none;
     font-size: 0.90em;
-    /* border-radius: 6px; */
 }
 
 .todoList .todo_Status{
     width: 100%;
     font-size: 1em;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin: 5px -10%;
+}
+.todo_Status .todoStatus{
+    width: 60%;
 }
 .todoList #todoHeading{
     height: 10%;
@@ -45,7 +45,7 @@
     border-top-right-radius: 8px;
 }
 .todoList #todoDes{
-    height: 55%;
+    height: 60%;
     padding: 5px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;

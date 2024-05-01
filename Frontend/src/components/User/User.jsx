@@ -8,7 +8,7 @@ function User() {
     
   return (
     <div className='user'>
-      <img src={male} alt="userAvatar" />
+      <img src={female} alt="userAvatar" />
       <div className='userName'>{name}</div>
     </div>
   )

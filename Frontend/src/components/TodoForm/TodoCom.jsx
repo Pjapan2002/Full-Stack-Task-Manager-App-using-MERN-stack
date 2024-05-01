@@ -11,8 +11,19 @@ function TodoCom() {
 
     // const [todoes, setTodoes] = useState([]);
     const [editBtn, setEditBtn] = useState(true);
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+
+    function statusUpdateFun(todo, todoStatus) {
+        const currStatus = document.querySelector(`#todostatusText${todo}`);
+
+        if (!todoStatus) {
+            currStatus.innerHTML = "pending";
+        } else {
+            currStatus.innerHTML = "Completed";
+        }
+    }
 
     const removeTodo = (id) => {
         try {
@@ -41,45 +52,50 @@ function TodoCom() {
                 {
 
                     todos?.map((todo) => {
-                        
+
                         return (
                             <li key={todo._id} >
                                 <div className='todo_Status'>
-                                <input
-                                    id='todoStatus'
-                                    type='checkbox'
+                                    <input
+                                        id={todo._id}
+                                        type='checkbox'
+                                        check='false'
+                                        onChange={ (e) => statusUpdateFun(todo._id,e.target.checked) }
                                     />
-                                <label
-                                    id='todoText'
-                                    htmlFor='todoStatus'
-                                >   pending</label>
+                                    <label
+                                        className='todoStatus'
+                                        id={`todostatusText${todo._id}`}
+                                        htmlFor='todoStatus'
+                                    >
+                                    pending
+                                    </label>
                                 </div>
                                 {/* <hr /> */}
                                 <input
                                     id='todoHeading'
                                     type="text"
-                                    value={ (title)? title: todo.title }
-                                    readOnly={ editBtn }
-                                    onDoubleClick={ () => setEditBtn(!editBtn) }
-                                    onChange={ (e) => {
+                                    value={(title) ? title : todo.title}
+                                    readOnly={editBtn}
+                                    onDoubleClick={() => setEditBtn(!editBtn)}
+                                    onChange={(e) => {
                                         setTitle(e.target.value);
-                                    } }
+                                    }}
                                 />
                                 {/* <hr /> */}
                                 <textarea
                                     id='todoDes'
                                     type="text"
-                                    value={ (description)? description: todo.description }
-                                    readOnly={ editBtn }
-                                    onDoubleClick={ () => setEditBtn(!editBtn) }
-                                    onChange={ (e) => {
+                                    value={(description) ? description : todo.description}
+                                    readOnly={editBtn}
+                                    onDoubleClick={() => setEditBtn(!editBtn)}
+                                    onChange={(e) => {
                                         setDescription(e.target.value);
-                                    } }
+                                    }}
                                 />
                                 {/* <hr /> */}
                                 <div className='btn'>
-                                    <button onClick={ () => updateTodo(todo._id) }>edit</button>
-                                    <button onClick={ () => removeTodo(todo._id) }>delete</button>
+                                    <button onClick={() => updateTodo(todo._id)}>edit</button>
+                                    <button onClick={() => removeTodo(todo._id)}>delete</button>
                                 </div>
 
                             </li>
