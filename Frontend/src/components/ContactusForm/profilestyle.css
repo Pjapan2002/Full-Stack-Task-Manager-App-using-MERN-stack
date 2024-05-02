@@ -1,0 +1,43 @@
+.devProfile{
+    width: 100%;
+    text-align: start;
+    padding: 20px 15px;
+}
+
+.devProfile h3{
+    font-size: 3em;
+}
+.devProfile h4{
+    font-size: 2.2em;
+    color: green;
+}
+.devProfile p{
+    font-size: 1.3em;
+    margin: 15px 0;
+}
+
+.devProfile span{
+    font-size: 2em;
+    padding: 0 5px;
+    color: #505050;
+}
+
+.devProfile span:hover{
+    color: green;
+}
+
+.devProfile button{
+    border: none;
+    display: block;
+    margin: 20px 0;
+    padding: 8px 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    background-color: green;
+    color: #fff;
+}
+
+.devProfile button i{
+    margin-right: 5px;
+    color: #212121;
+}

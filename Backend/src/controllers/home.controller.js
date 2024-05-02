@@ -4,7 +4,12 @@ import Todos from '../models/todo.model.js';
 export async function handleHomeGet(req, res) {
     const todos = await Todos.find({});
 
-    res.json(todos)
+    res.status(200)
+       .json({
+        "status code": 200,
+        "length": todos.length,
+        "data": todos
+       })
 }
 
 export async function handleHomePost(req, res) {
@@ -14,7 +19,12 @@ export async function handleHomePost(req, res) {
     // console.log(title, "\n", description);
 
     if (!(title || description)) {
-        throw new Error(400, "Title or description are required.")
+        res.status(400)
+           .json({
+            "status Code": 400,
+            "Message": "Title or description are required."
+           })
+        return;
     }
 
     const newTodo = await TodoContent.create(
@@ -57,7 +67,11 @@ export async function handleHomeDelete(req, res) {
     const id = req.params.id;
     // console.log(id); 
     if (!id) {
-        throw new Error(404, "Todo_id is required!");
+        res.status(404)
+           .json({
+            "status Code": 404,
+            "Message": "Todo_id is required!"
+           })
     }
 
     await TodoContent.findByIdAndDelete(id);
@@ -86,7 +100,11 @@ export async function handleHomeEdit(req, res) {
     const { taskstatus, title, description } = req.body;
 
     if (!title) {
-        throw new Error(404, "Title of task is required!")
+        res.status(404)
+           .json({
+            "status Code": 404,
+            "Message": "Title of task is required!"
+           })
     }
 
     const updatetodo = await TodoContent.findByIdAndUpdate(id, {

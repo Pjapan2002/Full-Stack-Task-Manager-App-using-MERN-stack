@@ -1,16 +1,16 @@
-import React from 'react'
+import React from 'react';
 import './ContactusStyle.css';
+import ContactusForm from '../../components/ContactusForm/ContactusForm.jsx';
+import Profile from '../../components/ContactusForm/Profile.jsx';
 
 function Contactus() {
   return (
-    <div className='contactForm'>
+    <div className='contactusPage'>
       <h1>Contact us</h1>
-      <form action="/contactus" method='post'>
-        <input type="text" name='name' id='name' placeholder='username' />
-        <input type="email" name='email' id='email' placeholder='email' />
-        <textarea id='msg' name='msg' rows='8' placeholder='Message'/>
-        <input type="submit" value="Send Message" />
-      </form>
+      <div className='contactusPageComp'>
+        <Profile />
+        <ContactusForm />
+      </div>
     </div>
   )
 }

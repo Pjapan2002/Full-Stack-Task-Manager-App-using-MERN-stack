@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const todoContentSchema = new mongoose.Schema({
-    taskstatus: {
+    taskstatusPending: {
         type: Boolean,
         default: true,
         required: true,

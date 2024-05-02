@@ -2,6 +2,7 @@ import express from 'express';
 import dbConnection from './db/dbConnection.js';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+
 // Database Connections
 dbConnection("mongodb://localhost:27017")
 .then(() => console.log("Database connection successfull!!!"))
@@ -18,9 +19,11 @@ app.use(cookieParser());
 // Routes
 import HomeRoute from './routes/home.route.js';
 import userRoute from './routes/user.route.js';
+import contactusRoute from './routes/contactus.route.js';
 
 app.use( '/api/v1/task', HomeRoute );
 app.use( '/api/v1/user', userRoute );
+app.use( '/api/v1/contactus', contactusRoute);
 
 
 app.listen(4000, () => {

@@ -15,7 +15,12 @@ const generateAccessAndRefereshTokens = async function (userId) {
         return { accessToken, refreshToken };
 
     } catch (error) {
-        throw new Error( 500, "Server error while generating AccessToken and RefreshToken.");
+        res.status(500)
+           .json({
+            "status Code": 500,
+            "Error": error,
+            "Message": "Server error while generating AccessToken and RefreshToken."
+           })
     }
 }
 
@@ -23,7 +28,11 @@ export async function handleUserSignupPost(req, res) {
     const { fullname, dateOfBirth, gender, username, email, password } = req.body;
 
     if ([fullname, dateOfBirth, gender, username, email, password].some((field) => field?.trim() === "")) {
-        throw new Error(401, "All fields are required")
+        res.status(401)
+           .json({
+            "status Code": 401,
+            "Message": "All fields are required."
+           })
     }
 
     const existUser = await User.findOne({
@@ -31,7 +40,11 @@ export async function handleUserSignupPost(req, res) {
     });
 
     if (existUser) {
-        throw new Error(402, "This Email or username is already exists. ")
+        res.status(402)
+           .json({
+            "status Code": 402,
+            "Message": "This Email or username is already exists."
+           })
     }
 
     const user = await User.create({
@@ -48,7 +61,11 @@ export async function handleUserSignupPost(req, res) {
     )
 
     if (!createUser) {
-        throw new Error(500, "something went wrong while adding data into mongoDB.")
+        res.status(500)
+           .json({
+            "status Code": 500,
+            "Message": "something went wrong while adding data into mongoDB."
+           })
     }
 
     res.status(201).json(
@@ -65,7 +82,11 @@ export async function handleUserLoginPost(req, res) {
     const { username, email, password } = req.body;
 
     if ([username, email, password].some((field) => field?.trim() === "")) {
-        throw new Error(401, "username or email or password are required")
+        res.status(401)
+           .json({
+            "status Code": 401,
+            "Message": "username or email or password are required!"
+           })
     }
 
     const user = await User.findOne({
@@ -73,7 +94,11 @@ export async function handleUserLoginPost(req, res) {
     });
 
     if (!user) {
-        throw new Error(404, "user does not exist.")
+        res.status(404)
+           .json({
+            "status Code": 404,
+            "Message": "user does not exist!"
+           })
     }
 
     const isPasswordCorrect = await user.isPasswordCorrect(password);
@@ -81,7 +106,11 @@ export async function handleUserLoginPost(req, res) {
     // console.log(isPasswordCorrect);
 
     if (!isPasswordCorrect) {
-        throw new Error(401, "Invalid Password!");
+        res.status(401)
+           .json({
+            "status Code": 401,
+            "Message": "Invalid Password!"
+           })
     }
     
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id);
