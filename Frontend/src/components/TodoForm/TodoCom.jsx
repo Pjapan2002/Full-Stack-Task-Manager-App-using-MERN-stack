@@ -9,12 +9,20 @@ function TodoCom() {
     const todos = useSelector(state => state.todos);
     const dispatch = useDispatch();
 
-    // const [todoes, setTodoes] = useState([]);
+    // const [todos, setTodos] = useState(useSelector(state => state.todos));
     const [editBtn, setEditBtn] = useState(true);
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
+    const handleEditFun = (currTodo) => {
+        setEditBtn(!editBtn)
+        // console.log(editElem)
+        // console.log(currTodo);
+        setTitle(currTodo.title)
+        setDescription(currTodo.description)
+    }
+   
     function statusUpdateFun(todo, todoStatus) {
         const currStatus = document.querySelector(`#todostatusText${todo}`);
 
@@ -33,16 +41,14 @@ function TodoCom() {
         }
     }
 
-    const updateTodo = (_id) => {
-        // console.log(todo._id);
-        try {
-            dispatch(editTodo({ _id, title, description }));
-            setEditBtn(!editBtn);
-            setTitle("");
-            setDescription("");
-        } catch (error) {
-            console.log("Error: Editing todo from Todos.", error);
-        }
+    const updateTodo = (id) => {
+        // console.log(id, "\n", title, "\n", description);
+        dispatch(editTodo({id,title,description}));
+        setEditBtn(!editBtn);
+        // console.log({id,title,description});
+        // setTodos((prevTodos) => (
+        //     prevTodos._id === id ? (!title) : prevTodos
+        // ))
     }
 
 
@@ -54,7 +60,7 @@ function TodoCom() {
                     todos?.map((todo) => {
 
                         return (
-                            <li key={todo._id} >
+                            <li key={todo._id}>
                                 <div className='todo_Status'>
                                     <input
                                         id={todo._id}
@@ -70,29 +76,26 @@ function TodoCom() {
                                     pending
                                     </label>
                                 </div>
-                                {/* <hr /> */}
+                                
                                 <input
                                     id='todoHeading'
                                     type="text"
-                                    value={(title) ? title : todo.title}
+                                    value={ (editBtn) ? todo.title : title}
                                     readOnly={editBtn}
-                                    onDoubleClick={() => setEditBtn(!editBtn)}
-                                    onChange={(e) => {
-                                        setTitle(e.target.value);
-                                    }}
+                                    onDoubleClick={(e) => handleEditFun(todo) }
+                                    onChange={(e) => setTitle(e.target.value)}
                                 />
-                                {/* <hr /> */}
+                                
                                 <textarea
                                     id='todoDes'
                                     type="text"
-                                    value={(description) ? description : todo.description}
+                                    value={ (editBtn) ? todo.description : description }
                                     readOnly={editBtn}
-                                    onDoubleClick={() => setEditBtn(!editBtn)}
-                                    onChange={(e) => {
-                                        setDescription(e.target.value);
-                                    }}
+                                    // onDoubleClick={() => setEditBtn(!editBtn)}
+                                    onDoubleClick={(e) => handleEditFun(todo) }
+                                    onChange= {(e) => setDescription(e.target.value)}
                                 />
-                                {/* <hr /> */}
+                                
                                 <div className='btn'>
                                     <button onClick={() => updateTodo(todo._id)}>edit</button>
                                     <button onClick={() => removeTodo(todo._id)}>delete</button>
