@@ -23,7 +23,9 @@ function Navbar() {
         </ul>
       </div>
       <div>
-        <button className='logoutbtn'>Logout</button>
+        <button className='logoutbtn'>
+          <Link to='/login'>Login</Link>
+        </button>
       </div>
     </div>
   )
