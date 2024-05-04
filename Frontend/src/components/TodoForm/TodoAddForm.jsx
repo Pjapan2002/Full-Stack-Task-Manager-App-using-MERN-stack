@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './TodoFormStyle.css';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../TodoFeatures/todoSlice.js';
+import { addTodo, fetchtodoTask } from '../../TodoFeatures/todoSlice.js';
+import axios from 'axios';
 
 function TodoAddForm() {
 
@@ -9,8 +10,17 @@ function TodoAddForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const addTodoHandler = (e) => {
+  // useEffect(() => {
+  //   dispatch(fetchtodoTask())
+  // })
+
+  const addTodoHandler = async (e) => {
     e.preventDefault();
+
+    if(title === ""){
+      alert("Please enter the title of the task!");
+      return;
+    }
 
     const inputData = {
       taskStatus: true,
@@ -19,6 +29,16 @@ function TodoAddForm() {
     }
     
     dispatch(addTodo(inputData));
+
+    const createdTask = await axios({
+      method: 'post',
+      'url': 'api/v1/task/todos',
+      'data': inputData
+    })
+    
+    // dispatch(fetchtodoTask())
+    // console.log(createdTask);
+
     setTitle("");
     setDescription("");
 

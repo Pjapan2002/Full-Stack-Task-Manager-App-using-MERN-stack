@@ -27,6 +27,7 @@ const generateAccessAndRefereshTokens = async function (userId) {
 export async function handleUserSignupPost(req, res) {
     const { fullname, dateOfBirth, gender, username, email, password } = req.body;
 
+    // console.log({ fullname, dateOfBirth, gender, username, email, password });
     if ([fullname, dateOfBirth, gender, username, email, password].some((field) => field?.trim() === "")) {
         res.status(401)
            .json({

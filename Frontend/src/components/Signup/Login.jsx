@@ -1,13 +1,34 @@
 import React from 'react'
 import './SignupStyle.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    
+    const userData = {
+      "username": e.target.username.value,
+      "email": e.target.email.value,
+      "password": e.target.password.value
+    }
+
+    const user = await axios({
+      method: 'post',
+      'url': '/api/v1/user/login',
+      'data': userData
+    })
+
+    location.reload();
+  }
+
   return (
     <div className='signup'>
       <h1>Login</h1>
-      <form action="/login" method='Post'>
-        <input type="text" name='name' id='name' placeholder='username' />
+      <form onSubmit={handleSubmit} >
+        <input type="text" name='username' id='username' placeholder='username' />
         <input type="email" name='email' id='email' placeholder='email' />
         <input type="password" name='password' id='password' placeholder='password'/>
         <input type="submit" value="Login" />
@@ -17,4 +38,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Login;

@@ -4,7 +4,7 @@ import { loginUserOnly } from '../middlewares/auth.middleware.js'
 
 const router = Router();
 
-router.route('/todos').get(handleHomeGet)
+router.route('/todos').get( loginUserOnly, handleHomeGet)
 
 router.route('/todos').post( loginUserOnly, handleHomePost )
 

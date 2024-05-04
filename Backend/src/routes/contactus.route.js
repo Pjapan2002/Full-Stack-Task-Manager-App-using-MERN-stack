@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { handleContactusPost } from "../controllers/contactus.controller";
+import { handleContactusPost } from "../controllers/contactus.controller.js";
 
 const router = Router();
 

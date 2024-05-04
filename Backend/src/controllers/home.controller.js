@@ -2,8 +2,10 @@ import TodoContent from '../models/todoContent.model.js';
 import Todos from '../models/todo.model.js';
 
 export async function handleHomeGet(req, res) {
-    const todos = await Todos.find({});
 
+    const todos = await TodoContent.find( { createdBy: req.user._id } );
+
+    // console.log(todos);
     res.status(200)
        .json({
         "status code": 200,
@@ -30,7 +32,8 @@ export async function handleHomePost(req, res) {
     const newTodo = await TodoContent.create(
         {
             title,
-            description
+            description,
+            createdBy: req.user._id
         }
     )
 
